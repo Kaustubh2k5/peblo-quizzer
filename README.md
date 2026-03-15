@@ -23,7 +23,7 @@ adjusts difficulty per student based on their performance.
 | Database | MongoDB 7 |
 | Cache / Queue | Redis 7 |
 | Reverse Proxy | Nginx |
-| LLM | NVIDIA NIM (swappable: OpenAI, Anthropic, Gemini) |
+| LLM | (swappable: OpenAI, Anthropic, Gemini) |
 | Containerisation | Docker + Docker Compose |
 
 ---
