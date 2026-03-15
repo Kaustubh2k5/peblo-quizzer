@@ -3,6 +3,11 @@
 AI-powered educational content ingestion and adaptive quiz platform.
 Ingests PDFs, extracts content, generates quiz questions via LLM, and
 adjusts difficulty per student based on their performance.
+---
+
+## Architecture
+
+[image.png]
 
 ---
 
