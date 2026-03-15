@@ -332,7 +332,6 @@ peblo-quiz-engine/
 │   ├── llm/
 │   │   ├── base.py              # BaseLLMProvider abstract class
 │   │   ├── factory.py           # get_llm_provider() — reads LLM_PROVIDER env
-│   │   ├── nvidia_provider.py   # NVIDIA NIM (OpenAI-compatible)
 │   │   ├── openai_provider.py
 │   │   ├── anthropic_provider.py
 │   │   └── gemini_provider.py
