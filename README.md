@@ -7,7 +7,8 @@ adjusts difficulty per student based on their performance.
 
 ## Architecture
 
-[image.png]
+![Architecture](image.png)
+
 
 ---
 
