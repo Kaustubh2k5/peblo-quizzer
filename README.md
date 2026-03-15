@@ -437,5 +437,3 @@ docker compose logs api --tail=50
 The containers might still be starting. Wait 10–15 seconds and try again.
 
 ---
-The `.gitignore` ensures `.env` and database volumes are never committed.
-Anyone cloning the repo follows the Quick Start steps above with their own API key.
