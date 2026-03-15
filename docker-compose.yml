@@ -1,0 +1,82 @@
+version: "3.9"
+
+services:
+
+  # ── FastAPI application ──────────────────────────────────────────
+  api:
+    build: .
+    container_name: peblo_api
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MONGODB_URL=mongodb://mongo:27017
+      - REDIS_URL=redis://redis:6379/0
+    volumes:
+      - ./app:/app/app          # live reload during development
+    ports:
+      - "8000:8000"             # direct access for testing
+    depends_on:
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - peblo_net
+
+  # ── Nginx reverse proxy ──────────────────────────────────────────
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: peblo_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api
+    networks:
+      - peblo_net
+
+  # ── MongoDB ──────────────────────────────────────────────────────
+  mongo:
+    image: mongo:7.0
+    container_name: peblo_mongo
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_DATABASE=peblo
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - "27017:27017"           # exposed so you can inspect with MongoDB Compass
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 60s
+      timeout: 5s
+      retries: 5
+    networks:
+      - peblo_net
+
+  # ── Redis ────────────────────────────────────────────────────────
+  redis:
+    image: redis:7.2-alpine
+    container_name: peblo_redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - peblo_net
+
+volumes:
+  mongo_data:
+  redis_data:
+
+networks:
+  peblo_net:
+    driver: bridge

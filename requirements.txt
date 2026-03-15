@@ -1,0 +1,22 @@
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+pydantic==2.10.3
+pydantic-settings==2.6.1
+
+# database
+motor==3.6.0
+pymongo==4.9.2
+redis==5.2.1
+
+# pdf extraction
+pdfplumber==0.11.4
+
+# llm providers
+openai==1.57.4
+anthropic==0.40.0
+google-generativeai==0.8.3
+
+# utilities
+python-multipart==0.0.20
+httpx==0.28.1
+aiofiles==24.1.0
