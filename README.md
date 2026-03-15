@@ -64,16 +64,6 @@ cp .env.example .env
 
 Open `.env` in any text editor and fill in your API key.
 
-**For NVIDIA NIM** (default, free tier available):
-1. Go to https://build.nvidia.com
-2. Sign up / log in
-3. Go to any model page (e.g. Llama 3.1) → click "Get API Key"
-4. Copy the key into `.env`:
-
-```env
-LLM_PROVIDER=nvidia
-NVIDIA_API_KEY=nvapi-xxxxxxxxxxxxxxxxxxxx
-```
 
 **To use a different provider instead**, change `LLM_PROVIDER` and fill in that key:
 
